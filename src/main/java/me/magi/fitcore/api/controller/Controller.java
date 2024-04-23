@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -35,9 +36,10 @@ public class Controller {
 
     @PostMapping("/user/login")
     @ResponseStatus(HttpStatus.FOUND)
-    public UserEntity findUserByEmailAndPassword(@RequestParam("email") String email,
-                              @RequestParam("password") String password) {
-        return service.findUserByEmailAndPassword(email,password);
+    public UserEntity findUserByEmailAndPassword(@RequestBody Map<String, String> credentials) {
+        String email = credentials.get("email");
+        String password = credentials.get("password");
+        return service.findUserByEmailAndPassword(email, password);
 
     }
 

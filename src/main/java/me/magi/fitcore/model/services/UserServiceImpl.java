@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserEntity findUserByEmailAndPassword(String email, String password) {
-        var user = repository.findByEmail(email);
+        var user = repository.findUserByEmail(email);
         if(!Objects.equals(user.getPassword(), password)) {
 
         }
