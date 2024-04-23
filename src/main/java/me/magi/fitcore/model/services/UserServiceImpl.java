@@ -7,6 +7,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -44,7 +45,16 @@ public class UserServiceImpl implements UserService {
         //var userInDB = repository.findByIdNumber(id).orElseThrow();
 
         //repository.save(userInDB);
-
-
     }
+
+    @Override
+    public UserEntity findUserByEmailAndPassword(String email, String password) {
+        var user = repository.findByEmail(email);
+        if(!Objects.equals(user.getPassword(), password)) {
+
+        }
+        return user;
+    }
+
+
 }

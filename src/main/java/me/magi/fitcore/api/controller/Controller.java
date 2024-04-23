@@ -33,6 +33,14 @@ public class Controller {
         return service.readUser(id);
     }
 
+    @PostMapping("/user/login")
+    @ResponseStatus(HttpStatus.FOUND)
+    public UserEntity findUserByEmailAndPassword(@RequestParam("email") String email,
+                              @RequestParam("password") String password) {
+        return service.findUserByEmailAndPassword(email,password);
+
+    }
+
     @DeleteMapping("/user/{id}")
     @ResponseStatus(HttpStatus.GONE)
     public void DeleteMilitary(@PathVariable Long id) {
