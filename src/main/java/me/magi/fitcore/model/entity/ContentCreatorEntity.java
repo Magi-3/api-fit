@@ -3,6 +3,7 @@ package me.magi.fitcore.model.entity;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -22,6 +23,12 @@ public class ContentCreatorEntity {
     private Date registerDay;
 
     private String jobTitle;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "owner", cascade = CascadeType.ALL)
+    private List<RecipeEntity> recipe;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "owner", cascade = CascadeType.ALL)
+    private List<PostEntity> post;
 
     public UUID getId() {
         return id;

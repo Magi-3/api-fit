@@ -20,8 +20,9 @@ public class PostEntity {
 
     private Date registerDay;
 
-    @OneToMany
-    private List<ContentCreatorEntity> owner;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "owner_id")
+    private ContentCreatorEntity owner;
 
     private String tags;
 
@@ -53,11 +54,11 @@ public class PostEntity {
         this.registerDay = registerDay;
     }
 
-    public List<ContentCreatorEntity> getOwner() {
+    public ContentCreatorEntity getOwner() {
         return owner;
     }
 
-    public void setOwner(List<ContentCreatorEntity> owner) {
+    public void setOwner(ContentCreatorEntity owner) {
         this.owner = owner;
     }
 

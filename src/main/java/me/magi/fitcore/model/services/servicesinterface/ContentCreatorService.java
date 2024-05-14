@@ -13,7 +13,8 @@ public interface ContentCreatorService {
 
     public UserEntity readContentCreator(String id);
 
-    public List<UserEntity> listAllContentCreator();
+    public List<ContentCreatorEntity> listAllContentCreator();
 
     public void updateContentCreatorById(String id, ContentCreatorEntity contentCreator);
+
 }

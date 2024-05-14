@@ -4,6 +4,8 @@ import me.magi.fitcore.model.entity.UserEntity;
 import me.magi.fitcore.model.repository.UserRepository;
 import me.magi.fitcore.model.services.servicesinterface.UserService;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,13 +16,32 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository repository;
 
-    public UserServiceImpl(UserRepository repository){
+    private final PasswordEncoder passwordEncoder;
+
+    public UserServiceImpl(
+            UserRepository repository,
+            PasswordEncoder passwordEncoder
+
+    ) {
         this.repository = repository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
-    public void addNewUser(UserEntity military) {
-        repository.save(military);
+    public void addNewUser(UserEntity input) {
+
+        UserEntity cleanUser= new UserEntity();
+
+        cleanUser.setName(input.getName());
+        cleanUser.setEmail(input.getEmail());
+        cleanUser.setPassword(passwordEncoder.encode(input.getPassword()));
+        cleanUser.setRegisterDay(input.getRegisterDay());
+        cleanUser.setHeight(input.getHeight());
+        cleanUser.setWeight(input.getWeight());
+        cleanUser.setCpf(input.getCpf());
+
+        repository.save(cleanUser);
+
     }
 
     @Override

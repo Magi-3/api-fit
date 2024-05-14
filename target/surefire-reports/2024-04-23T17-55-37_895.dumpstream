@@ -1,5 +1,0 @@
-# Created at 2024-04-23T17:55:38.101
-Boot Manifest-JAR contains absolute paths in classpath 'D:\api-fit\api-fit\target\test-classes'
-Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
-'other' has different root
-

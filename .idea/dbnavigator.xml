@@ -52,19 +52,19 @@
           <description value="" />
           <database-type value="POSTGRES" />
           <config-type value="BASIC" />
-          <database-version value="16.0" />
+          <database-version value="14.12" />
           <driver-source value="BUNDLED" />
           <driver-library value="" />
           <driver value="" />
           <url-type value="DATABASE" />
-          <host value="viaduct.proxy.rlwy.net" />
-          <port value="36842" />
-          <database value="postgres" />
+          <host value="dpg-cp183rmv3ddc73cukml0-a.oregon-postgres.render.com" />
+          <port value="5432" />
+          <database value="fitfocus_data_psw1" />
           <tns-folder value="" />
           <tns-profile value="" />
           <type value="USER_PASSWORD" />
-          <user value="postgres" />
-          <deprecated-pwd value="d3BUZGNRblljWUdMbWhzTFRMUWhxb0NBdUpEQ1hPeko=" />
+          <user value="fitfocus_data_psw1_user" />
+          <deprecated-pwd value="dlpsT0RrdmJEN05aaXFEeEdhbm5IQ3Y3ejExUE9Zc0g=" />
         </database>
         <properties>
           <auto-commit value="false" />
