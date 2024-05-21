@@ -1,4 +1,4 @@
-package me.magi.fitcore.api.controller;
+package me.magi.fitcore.api.controller.post;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

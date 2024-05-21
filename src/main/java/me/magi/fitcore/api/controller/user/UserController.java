@@ -1,8 +1,9 @@
-package me.magi.fitcore.api.controller;
+package me.magi.fitcore.api.controller.user;
 
 import me.magi.fitcore.model.entity.UserEntity;
 import me.magi.fitcore.model.services.UserServiceImpl;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,14 +31,6 @@ public class UserController {
     @ResponseStatus(HttpStatus.FOUND)
     public UserEntity findUserById(@PathVariable Long id) {
         return service.readUser(id);
-    }
-
-    @PostMapping("/user/login")
-    @ResponseStatus(HttpStatus.FOUND)
-    public UserEntity findUserByEmailAndPassword(@RequestBody Map<String, String> credentials) {
-        String email = credentials.get("email");
-        String password = credentials.get("password");
-        return service.findUserByEmailAndPassword(email, password);
     }
 
     @DeleteMapping("/user/{id}")

@@ -1,4 +1,4 @@
-package me.magi.fitcore.api.controller;
+package me.magi.fitcore.api.controller.recipe;
 
 import me.magi.fitcore.model.services.RecipeServiceImpl;
 import org.springframework.web.bind.annotation.RequestMapping;

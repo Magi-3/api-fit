@@ -11,17 +11,17 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AuthenticationService {
+public class AuthenticationUserService {
     private final UserRepository userRepository;
 
     private final PasswordEncoder passwordEncoder;
 
     private final AuthenticationManager authenticationManager;
 
-    private static final Logger logger = LoggerFactory.getLogger(AuthenticationService.class);
+    private static final Logger logger = LoggerFactory.getLogger(AuthenticationUserService.class);
 
 
-    public AuthenticationService(
+    public AuthenticationUserService(
             UserRepository userRepository,
             AuthenticationManager authenticationManager,
             PasswordEncoder passwordEncoder
@@ -42,12 +42,6 @@ public class AuthenticationService {
                         input.getPassword()
                 )
         );
-
-        logger.info(input.getEmail());
-        logger.info(input.getPassword());
-
-
-
 
         return (UserEntity) userRepository.findUserByEmail(input.getEmail());
     }

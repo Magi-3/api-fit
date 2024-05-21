@@ -20,6 +20,7 @@ public class UserEntity implements UserDetails {
 
     private String email;
 
+    @Column(length = 255)
     private String password;
 
     private Date registerDay;
