@@ -12,7 +12,7 @@ public class PostEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
-    private UUID id;
+    private Long id;
 
     private String title;
 
@@ -29,11 +29,11 @@ public class PostEntity {
 
     private String tags;
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
