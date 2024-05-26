@@ -24,6 +24,9 @@ public class PostEntity {
     @JoinColumn(name = "owner_id")
     private ContentCreatorEntity owner;
 
+    @Lob // Indica que o campo será armazenado como LOB (Binary Large Object)
+    private String image;
+
     private String tags;
 
     public UUID getId() {
