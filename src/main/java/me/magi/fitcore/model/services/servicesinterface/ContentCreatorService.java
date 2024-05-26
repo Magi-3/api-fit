@@ -17,4 +17,6 @@ public interface ContentCreatorService {
 
     public void updateContentCreatorById(String id, ContentCreatorEntity contentCreator);
 
+    ContentCreatorEntity findContentCreatorByEmail(String email);
+
 }

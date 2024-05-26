@@ -1,19 +1,50 @@
 package me.magi.fitcore.api.controller.recipe;
 
+import me.magi.fitcore.model.entity.RecipeEntity;
+import me.magi.fitcore.model.entity.UserEntity;
 import me.magi.fitcore.model.services.RecipeServiceImpl;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1")
 public class RecipeController {
 
-    private final RecipeServiceImpl recipeService;
+    private final RecipeServiceImpl service;
 
 
-    public RecipeController(RecipeServiceImpl recipeService) {
-        this.recipeService = recipeService;
+    public RecipeController(RecipeServiceImpl service) {
+        this.service = service;
     }
 
+    @GetMapping("/recipe")
+    public List<RecipeEntity> GetAllRecipe () {
+        return service.listAllRecipe();
+    }
+    @PostMapping("/recipe")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void addNewRecipe(@RequestBody RecipeEntity recipe) {
+        service.addNewRecipe(recipe);
+    }
+
+    @GetMapping("/recipe/{id}")
+    @ResponseStatus(HttpStatus.FOUND)
+    public RecipeEntity findRecipeById(@PathVariable Long id, RecipeEntity recipe) {
+        return service.updateRecipeById(id, recipe);
+    }
+
+    @DeleteMapping("/recipe/{id}")
+    @ResponseStatus(HttpStatus.GONE)
+    public void DeleteRecipe(@PathVariable Long id) {
+        service.removeRecipe(id);
+    }
+
+    @PatchMapping("/recipe/{id}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void UpdateRecipe(@PathVariable Long id, @RequestBody RecipeEntity recipe) {
+        service.updateRecipeById(id, recipe);
+    }
 
 }

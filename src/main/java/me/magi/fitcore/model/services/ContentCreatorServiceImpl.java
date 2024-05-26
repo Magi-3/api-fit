@@ -41,6 +41,11 @@ public class ContentCreatorServiceImpl implements ContentCreatorService {
 
     @Override
     public void updateContentCreatorById(String id, ContentCreatorEntity contentCreator) {
-
     }
+
+    @Override
+    public ContentCreatorEntity findContentCreatorByEmail(String email) {
+        return contentCreatorRepository.findContentCreatorByEmail(email);
+    }
+
 }

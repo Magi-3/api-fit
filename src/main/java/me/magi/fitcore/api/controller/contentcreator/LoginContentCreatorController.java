@@ -1,9 +1,12 @@
 package me.magi.fitcore.api.controller.contentcreator;
 
 import me.magi.fitcore.dto.LoginDto;
+import me.magi.fitcore.dto.pojo.LoginContentCreatorResponse;
 import me.magi.fitcore.dto.pojo.LoginUserResponse;
 import me.magi.fitcore.model.entity.ContentCreatorEntity;
 import me.magi.fitcore.model.entity.UserEntity;
+import me.magi.fitcore.model.services.ContentCreatorServiceImpl;
+import me.magi.fitcore.model.services.UserServiceImpl;
 import me.magi.fitcore.model.services.jwt.AuthenticationContentCreatorService;
 import me.magi.fitcore.model.services.jwt.AuthenticationUserService;
 import me.magi.fitcore.model.services.jwt.JwtService;
@@ -25,22 +28,26 @@ public class LoginContentCreatorController {
 
     private final AuthenticationContentCreatorService authenticationContentCreatorService;
 
-    public LoginContentCreatorController(JwtService jwtService, AuthenticationContentCreatorService authenticationUserService) {
+    private final ContentCreatorServiceImpl service;
+
+    public LoginContentCreatorController(JwtService jwtService, AuthenticationContentCreatorService authenticationUserService, ContentCreatorServiceImpl service) {
         this.jwtService = jwtService;
         this.authenticationContentCreatorService = authenticationUserService;
+        this.service = service;
     }
 
     @PostMapping("/contentCreator/login")
-    public ResponseEntity<LoginUserResponse> authenticate(@RequestBody ContentCreatorEntity loginUserDto) {
+    public ResponseEntity<LoginContentCreatorResponse> authenticate(@RequestBody ContentCreatorEntity loginUserDto) {
         ContentCreatorEntity authenticatedUser = authenticationContentCreatorService.authenticate(loginUserDto);
 
         String jwtToken = jwtService.generateToken(authenticatedUser);
 
-        LoginUserResponse loginUserResponse = new LoginUserResponse();
-        loginUserResponse.setExpiresIn(jwtService.getExpirationTime());
-        loginUserResponse.setToken(jwtToken);
+        LoginContentCreatorResponse loginContentCreatorResponse = new LoginContentCreatorResponse();
+        loginContentCreatorResponse.setExpiresIn(jwtService.getExpirationTime());
+        loginContentCreatorResponse.setToken(jwtToken);
+        loginContentCreatorResponse.setObject(service.findContentCreatorByEmail(loginUserDto.getEmail()));
 
-        return ResponseEntity.ok(loginUserResponse);
+        return ResponseEntity.ok(loginContentCreatorResponse);
     }
 
 }
