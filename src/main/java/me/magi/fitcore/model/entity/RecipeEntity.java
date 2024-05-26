@@ -21,7 +21,7 @@ public class RecipeEntity {
     private Date registerDay;
 
     @Lob // Indica que o campo será armazenado como LOB (Binary Large Object)
-    private byte[] image;
+    private String image;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "owner_id")
@@ -64,11 +64,11 @@ public class RecipeEntity {
         this.registerDay = registerDay;
     }
 
-    public byte[] getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
