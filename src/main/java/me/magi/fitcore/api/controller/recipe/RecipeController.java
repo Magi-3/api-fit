@@ -31,10 +31,8 @@ public class RecipeController {
 
     @GetMapping("/recipe/{id}")
     @ResponseStatus(HttpStatus.FOUND)
-    public Optional<RecipeEntity> findRecipeById(@PathVariable String id) {
-        Long recipeId = Long.parseLong(id); // Convertendo o ID de String para Long
-
-        return service.readRecipe(recipeId);
+    public Optional<RecipeEntity> findRecipeById(@PathVariable Long id) {
+        return service.readRecipe(id);
     }
 
     @DeleteMapping("/recipe/{id}")
