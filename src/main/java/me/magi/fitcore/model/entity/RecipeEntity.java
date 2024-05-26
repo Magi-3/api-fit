@@ -20,6 +20,8 @@ public class RecipeEntity {
 
     private Date registerDay;
 
+    @Lob // Indica que o campo será armazenado como LOB (Binary Large Object)
+    private byte[] image;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "owner_id")
@@ -27,10 +29,15 @@ public class RecipeEntity {
 
     private String calories;
 
-    private List<String> ingrendients;
+    @ElementCollection // Indica que essa é uma coleção de elementos
+    private List<String> ingredients;
 
     public UUID getId() {
         return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -57,6 +64,14 @@ public class RecipeEntity {
         this.registerDay = registerDay;
     }
 
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
     public ContentCreatorEntity getOwner() {
         return owner;
     }
@@ -73,11 +88,11 @@ public class RecipeEntity {
         this.calories = calories;
     }
 
-    public List<String> getIngrendients() {
-        return ingrendients;
+    public List<String> getIngredients() {
+        return ingredients;
     }
 
-    public void setIngrendients(List<String> ingrendients) {
-        this.ingrendients = ingrendients;
+    public void setIngredients(List<String> ingredients) {
+        this.ingredients = ingredients;
     }
 }
