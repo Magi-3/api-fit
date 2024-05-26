@@ -45,7 +45,7 @@ public class UserController {
         service.updateUserById(id, user);
     }
 
-    @GetMapping("/user")
+    @GetMapping("/user/email")
     @ResponseStatus(HttpStatus.FOUND)
     public UserEntity findUserByEmail(@RequestParam String email) {
         return service.findUserByEmail(email);
