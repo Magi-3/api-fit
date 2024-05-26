@@ -3,6 +3,7 @@ package me.magi.fitcore.api.controller.user;
 import me.magi.fitcore.dto.LoginDto;
 import me.magi.fitcore.dto.pojo.LoginUserResponse;
 import me.magi.fitcore.model.entity.UserEntity;
+import me.magi.fitcore.model.services.UserServiceImpl;
 import me.magi.fitcore.model.services.jwt.AuthenticationUserService;
 import me.magi.fitcore.model.services.jwt.JwtService;
 import org.springframework.http.ResponseEntity;
@@ -17,10 +18,13 @@ public class LoginUserController {
     private final JwtService jwtService;
 
     private final AuthenticationUserService authenticationUserService;
+    private final UserServiceImpl service;
 
-    public LoginUserController(JwtService jwtService, AuthenticationUserService authenticationUserService) {
+
+    public LoginUserController(JwtService jwtService, AuthenticationUserService authenticationUserService, UserServiceImpl service) {
         this.jwtService = jwtService;
         this.authenticationUserService = authenticationUserService;
+        this.service = service;
     }
 
     @PostMapping("/user/login")
@@ -32,6 +36,7 @@ public class LoginUserController {
         LoginUserResponse loginUserResponse = new LoginUserResponse();
         loginUserResponse.setExpiresIn(jwtService.getExpirationTime());
         loginUserResponse.setToken(jwtToken);
+        loginUserResponse.setObject(service.findUserByEmail(loginUserDto.getEmail()));
 
         return ResponseEntity.ok(loginUserResponse);
     }
