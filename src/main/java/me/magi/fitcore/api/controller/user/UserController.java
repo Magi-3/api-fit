@@ -45,4 +45,10 @@ public class UserController {
         service.updateUserById(id, user);
     }
 
+    @GetMapping("/user")
+    @ResponseStatus(HttpStatus.FOUND)
+    public UserEntity findUserByEmail(@RequestParam String email) {
+        return service.findUserByEmail(email);
+    }
+
 }

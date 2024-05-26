@@ -32,11 +32,11 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf()
                 .disable()
-                .authorizeHttpRequests()
-                .requestMatchers("**")
-                .permitAll()
+                .cors()
+                .and()
+                .authorizeRequests()
                 .anyRequest()
-                .authenticated()
+                .permitAll()
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -48,16 +48,15 @@ public class SecurityConfiguration {
     }
 
     @Bean
-    CorsConfigurationSource corsConfigurationSource() {
+    public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-
-        configuration.setAllowedOrigins(List.of("**"));
-        configuration.setAllowedMethods(List.of("post", "get"));
-        configuration.setAllowedHeaders(List.of("**"));
+        configuration.setAllowedOrigins(List.of("*")); // Permitir todas as origens
+        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS")); // Permitir todos os métodos HTTP
+        configuration.setAllowedHeaders(List.of("*")); // Permitir todos os cabeçalhos
+        configuration.setAllowCredentials(true); // Permitir credenciais
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-
-        source.registerCorsConfiguration("/**",configuration);
+        source.registerCorsConfiguration("/**", configuration); // Aplicar essa configuração para todas as rotas
 
         return source;
     }

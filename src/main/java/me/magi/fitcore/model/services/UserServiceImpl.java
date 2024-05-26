@@ -77,5 +77,10 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
+    @Override
+    public UserEntity findUserByEmail(String email) {
+        return repository.findUserByEmail(email);
+    }
+
 
 }
