@@ -1,8 +1,8 @@
 package me.magi.fitcore.model.services.servicesinterface;
 
 import me.magi.fitcore.model.entity.RecipeEntity;
-import me.magi.fitcore.model.entity.UserEntity;
-import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Optional;
 
 public interface RecipeService {
 
@@ -10,7 +10,7 @@ public interface RecipeService {
 
     public void removeRecipe(Long id);
 
-    public RecipeEntity readRecipe(Long id);
+    public Optional<RecipeEntity> readRecipe(Long id);
 
     public Iterable<RecipeEntity> listAllRecipe();
 

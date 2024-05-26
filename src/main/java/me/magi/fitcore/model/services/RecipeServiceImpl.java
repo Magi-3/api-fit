@@ -1,12 +1,12 @@
 package me.magi.fitcore.model.services;
 
 import me.magi.fitcore.model.entity.RecipeEntity;
-import me.magi.fitcore.model.entity.UserEntity;
 import me.magi.fitcore.model.repository.RecipeRepository;
 import me.magi.fitcore.model.services.servicesinterface.RecipeService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RecipeServiceImpl implements RecipeService {
@@ -28,8 +28,8 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
-    public RecipeEntity readRecipe(Long id) {
-        return null;
+    public Optional<RecipeEntity> readRecipe(Long id) {
+        return repository.findById(id);
     }
 
     @Override

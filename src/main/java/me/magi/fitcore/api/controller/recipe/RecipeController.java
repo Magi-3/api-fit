@@ -1,12 +1,12 @@
 package me.magi.fitcore.api.controller.recipe;
 
 import me.magi.fitcore.model.entity.RecipeEntity;
-import me.magi.fitcore.model.entity.UserEntity;
 import me.magi.fitcore.model.services.RecipeServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -31,8 +31,10 @@ public class RecipeController {
 
     @GetMapping("/recipe/{id}")
     @ResponseStatus(HttpStatus.FOUND)
-    public RecipeEntity findRecipeById(@PathVariable Long id, RecipeEntity recipe) {
-        return service.updateRecipeById(id, recipe);
+    public Optional<RecipeEntity> findRecipeById(@PathVariable String id) {
+        Long recipeId = Long.parseLong(id); // Convertendo o ID de String para Long
+
+        return service.readRecipe(recipeId);
     }
 
     @DeleteMapping("/recipe/{id}")
