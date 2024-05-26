@@ -21,7 +21,7 @@ public class PostController {
 
     @GetMapping("/post")
     public List<PostEntity> GetAllRecipe () {
-        return (List<PostEntity>) service.listAllRecipe();
+        return (List<PostEntity>) service.listAllPost();
     }
     @PostMapping("/post")
     @ResponseStatus(HttpStatus.CREATED)

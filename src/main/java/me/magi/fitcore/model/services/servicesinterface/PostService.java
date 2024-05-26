@@ -13,7 +13,7 @@ public interface PostService {
 
     public Optional<PostEntity> readRecipe(Long id);
 
-    public Iterable<PostEntity> listAllRecipe();
+    public Iterable<PostEntity> listAllPost();
 
     public Optional<PostEntity> updatePostById(Long id);
 }

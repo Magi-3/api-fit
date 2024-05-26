@@ -35,8 +35,8 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public Iterable<PostEntity> listAllRecipe() {
-        return null;
+    public Iterable<PostEntity> listAllPost() {
+        return repository.findAll();
     }
 
     public Optional<PostEntity> updatePostById(Long id) {
