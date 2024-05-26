@@ -33,6 +33,10 @@ public class PostEntity {
         return id;
     }
 
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -63,6 +67,14 @@ public class PostEntity {
 
     public void setOwner(ContentCreatorEntity owner) {
         this.owner = owner;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getTags() {
