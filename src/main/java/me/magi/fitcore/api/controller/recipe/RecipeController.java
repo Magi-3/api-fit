@@ -1,5 +1,6 @@
 package me.magi.fitcore.api.controller.recipe;
 
+import me.magi.fitcore.config.StringEscapeUtil;
 import me.magi.fitcore.model.entity.RecipeEntity;
 import me.magi.fitcore.model.services.RecipeServiceImpl;
 import org.springframework.http.HttpStatus;
@@ -26,9 +27,9 @@ public class RecipeController {
     @PostMapping("/recipe")
     @ResponseStatus(HttpStatus.CREATED)
     public void addNewRecipe(@RequestBody RecipeEntity recipe) {
+        recipe.setBodyText(StringEscapeUtil.escapeJson(recipe.getBodyText()));
         service.addNewRecipe(recipe);
     }
-
     @GetMapping("/recipe/{id}")
     @ResponseStatus(HttpStatus.FOUND)
     public Optional<RecipeEntity> findRecipeById(@PathVariable Long id) {

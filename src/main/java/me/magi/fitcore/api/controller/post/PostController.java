@@ -1,5 +1,6 @@
 package me.magi.fitcore.api.controller.post;
 
+import me.magi.fitcore.config.StringEscapeUtil;
 import me.magi.fitcore.model.entity.PostEntity;
 import me.magi.fitcore.model.entity.RecipeEntity;
 import me.magi.fitcore.model.services.PostServiceImpl;
@@ -25,10 +26,10 @@ public class PostController {
     }
     @PostMapping("/post")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addNewRecipe(@RequestBody PostEntity post) {
+    public void addNewPost(@RequestBody PostEntity post) {
+        post.setBodyText(StringEscapeUtil.escapeJson(post.getBodyText()));
         service.addNewPost(post);
     }
-
     @GetMapping("/post/{id}")
     @ResponseStatus(HttpStatus.FOUND)
     public Optional<PostEntity> findRecipeById(@PathVariable Long id) {
