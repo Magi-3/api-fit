@@ -1,5 +1,7 @@
 package me.magi.fitcore.api.controller.recipe;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import me.magi.fitcore.config.StringEscapeUtil;
 import me.magi.fitcore.model.entity.RecipeEntity;
 import me.magi.fitcore.model.services.RecipeServiceImpl;
@@ -14,10 +16,12 @@ import java.util.Optional;
 public class RecipeController {
 
     private final RecipeServiceImpl service;
+    private final ObjectMapper objectMapper;
 
 
-    public RecipeController(RecipeServiceImpl service) {
+    public RecipeController(RecipeServiceImpl service, ObjectMapper objectMapper) {
         this.service = service;
+        this.objectMapper = objectMapper;
     }
 
     @GetMapping("/recipe")
@@ -27,8 +31,14 @@ public class RecipeController {
     @PostMapping("/recipe")
     @ResponseStatus(HttpStatus.CREATED)
     public void addNewRecipe(@RequestBody RecipeEntity recipe) {
-        recipe.setBodyText(StringEscapeUtil.escapeJson(recipe.getBodyText()));
-        service.addNewRecipe(recipe);
+        try {
+            // Serializar o objeto para JSON para garantir que os caracteres sejam escapados
+            String jsonString = objectMapper.writeValueAsString(recipe);
+            RecipeEntity escapedRecipe = objectMapper.readValue(jsonString, RecipeEntity.class);
+            service.addNewRecipe(escapedRecipe);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException("Erro ao processar JSON", e);
+        }
     }
     @GetMapping("/recipe/{id}")
     @ResponseStatus(HttpStatus.FOUND)
