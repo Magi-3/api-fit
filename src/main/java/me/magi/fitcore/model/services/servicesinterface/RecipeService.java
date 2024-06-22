@@ -8,7 +8,7 @@ public interface RecipeService {
 
     public void addNewRecipe(RecipeEntity recipe);
 
-    public void removeRecipe(String id);
+    public void removeRecipe(Long id);
 
     public Optional<RecipeEntity> readRecipe(Long id);
 

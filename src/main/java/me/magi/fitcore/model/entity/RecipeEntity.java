@@ -12,7 +12,7 @@ public class RecipeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
-    private String id;
+    private Long id;
 
     private String title;
 
@@ -32,11 +32,11 @@ public class RecipeEntity {
     @ElementCollection // Indica que essa é uma coleção de elementos
     private List<String> ingredients;
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

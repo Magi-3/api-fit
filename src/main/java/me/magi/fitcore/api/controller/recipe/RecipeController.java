@@ -31,14 +31,7 @@ public class RecipeController {
     @PostMapping("/recipe")
     @ResponseStatus(HttpStatus.CREATED)
     public void addNewRecipe(@RequestBody RecipeEntity recipe) {
-        try {
-            // Serializar o objeto para JSON para garantir que os caracteres sejam escapados
-            String jsonString = objectMapper.writeValueAsString(recipe);
-            RecipeEntity escapedRecipe = objectMapper.readValue(jsonString, RecipeEntity.class);
-            service.addNewRecipe(escapedRecipe);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException("Erro ao processar JSON", e);
-        }
+        service.addNewRecipe(recipe);
     }
     @GetMapping("/recipe/{id}")
     @ResponseStatus(HttpStatus.FOUND)
@@ -48,7 +41,7 @@ public class RecipeController {
 
     @DeleteMapping("/recipe/{id}")
     @ResponseStatus(HttpStatus.GONE)
-    public void DeleteRecipe(@PathVariable String id) {
+    public void DeleteRecipe(@PathVariable Long id) {
         service.removeRecipe(id);
     }
 
