@@ -48,7 +48,7 @@ public class RecipeController {
 
     @DeleteMapping("/recipe/{id}")
     @ResponseStatus(HttpStatus.GONE)
-    public void DeleteRecipe(@PathVariable Long id) {
+    public void DeleteRecipe(@PathVariable String id) {
         service.removeRecipe(id);
     }
 

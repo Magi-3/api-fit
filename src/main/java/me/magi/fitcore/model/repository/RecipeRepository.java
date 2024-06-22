@@ -9,4 +9,5 @@ import java.util.Optional;
 
 @Repository
 public interface RecipeRepository extends CrudRepository<RecipeEntity, Long> {
+    void deleteRecipeById(String id);
 }

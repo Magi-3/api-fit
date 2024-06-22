@@ -7,15 +7,15 @@ import java.util.List;
 
 public interface ContentCreatorService {
 
-    public void addNewContentCreator(ContentCreatorEntity contentCreator);
+    void addNewContentCreator(ContentCreatorEntity contentCreator);
 
-    public void removeContentCreator(String id);
+    void removeContentCreator(Long id);
 
-    public UserEntity readContentCreator(String id);
+    UserEntity readContentCreator(String id);
 
-    public List<ContentCreatorEntity> listAllContentCreator();
+    List<ContentCreatorEntity> listAllContentCreator();
 
-    public void updateContentCreatorById(String id, ContentCreatorEntity contentCreator);
+    void updateContentCreatorById(Long id, ContentCreatorEntity contentCreator);
 
     ContentCreatorEntity findContentCreatorByEmail(String email);
 
