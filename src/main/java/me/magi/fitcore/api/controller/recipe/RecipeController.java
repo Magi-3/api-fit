@@ -31,6 +31,7 @@ public class RecipeController {
     @PostMapping("/recipe")
     @ResponseStatus(HttpStatus.CREATED)
     public void addNewRecipe(@RequestBody RecipeEntity recipe) {
+        System.out.println(recipe.toString());
         service.addNewRecipe(recipe);
     }
     @GetMapping("/recipe/{id}")
