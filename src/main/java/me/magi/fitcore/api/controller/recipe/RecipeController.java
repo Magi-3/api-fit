@@ -46,10 +46,10 @@ public class RecipeController {
         service.removeRecipe(id);
     }
 
-    @PatchMapping("/recipe/{id}")
+    @PostMapping("/recipe/update")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void UpdateRecipe(@PathVariable Long id, @RequestBody RecipeEntity recipe) {
-        service.updateRecipeById(id, recipe);
+    public void UpdateRecipe(@RequestBody RecipeEntity recipe) {
+        service.updateRecipeById(recipe);
     }
 
 }

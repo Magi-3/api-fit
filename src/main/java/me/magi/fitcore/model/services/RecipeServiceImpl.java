@@ -39,9 +39,19 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
-    public RecipeEntity updateRecipeById(Long id, RecipeEntity recipe) {
+    public RecipeEntity updateRecipeById(RecipeEntity recipe) {
 
-        return recipe;
+        Optional<RecipeEntity> optionalContent = repository.findById(recipe.getId());
+        if (optionalContent.isPresent()) {
+            RecipeEntity content = optionalContent.get();
+            content.setTitle(recipe.getTitle());
+            content.setBodyText(recipe.getBodyText());
+            content.setImage(recipe.getImage());
+            content.setCalories(recipe.getCalories());
+            return repository.save(content);
+        } else {
+            throw new RuntimeException("Content not found with id: " + recipe.getId());
+        }
     }
 }
 
