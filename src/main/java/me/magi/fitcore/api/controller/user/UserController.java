@@ -39,10 +39,10 @@ public class UserController {
         service.removeUser(id);
     }
 
-    @PatchMapping("/user/{id}")
+    @PatchMapping("/user")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void updateUser(@PathVariable Long id, @RequestBody UserEntity updateUserDTO) {
-        service.updateUser(id, updateUserDTO);
+    public void updateUser(@RequestBody UserEntity updateUserDTO) {
+        service.updateUser(updateUserDTO);
     }
 
     @GetMapping("/user/email")

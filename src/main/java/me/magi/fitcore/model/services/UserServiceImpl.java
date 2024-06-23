@@ -1,17 +1,16 @@
 package me.magi.fitcore.model.services;
 
 import me.magi.fitcore.model.entity.UserEntity;
-import me.magi.fitcore.model.entity.entityimpl.User;
 import me.magi.fitcore.model.repository.UserRepository;
 import me.magi.fitcore.model.services.servicesinterface.UserService;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -64,7 +63,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUser(Long id, UserEntity updateUserDTO) {
+    public UserEntity updateUser(UserEntity updateUserDTO) {
+        Long id = updateUserDTO.getId();
         Optional<UserEntity> optionalUser = repository.findById(id);
         if (optionalUser.isPresent()) {
             UserEntity user = optionalUser.get();
@@ -80,7 +80,8 @@ public class UserServiceImpl implements UserService {
             if (updateUserDTO.getCpf() != null) {
                 user.setCpf(updateUserDTO.getCpf());
             }
-            repository.save(user);
+
+            return repository.save(user);
         } else {
             throw new RuntimeException("User not found");
         }
