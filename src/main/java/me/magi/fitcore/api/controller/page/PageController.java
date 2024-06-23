@@ -10,7 +10,7 @@ public class PageController {
     public String showPage(Model model) {
         model.addAttribute("mensagem", "Olá, Mundo!");
         model.addAttribute("appName", "Fit Focus");
-        model.addAttribute("description", "Baixe o nosso aplicativo de alimentos e aproveite as melhores ofertas e produtos frescos!");
-        model.addAttribute("apkUrl", "https://storage.cloud.google.com/appreactfit/Captura%20de%20tela%202024-04-24%20201610.png?_ga=2.134160014.-147884152.1718682549");        return "homepage";
+        model.addAttribute("description", "Baixe o nosso aplicativo de alimentos e aproveite o melhor do mundo de alimentos!");
+        model.addAttribute("apkUrl", "https://storage.googleapis.com/appreactfit/FitFocuesAppV2.apk");        return "homepage";
     }
 }
