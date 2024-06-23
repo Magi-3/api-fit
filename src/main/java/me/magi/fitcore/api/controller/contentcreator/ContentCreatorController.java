@@ -35,5 +35,9 @@ public class ContentCreatorController {
         contentCreatorService.addNewContentCreator(user);
     }
 
+    @PatchMapping("/contentCreator")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void updateUser(){}
+
 
 }

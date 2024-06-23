@@ -41,8 +41,8 @@ public class UserController {
 
     @PatchMapping("/user/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void UpdateUser(@PathVariable Long id, @RequestBody UserEntity user) {
-        service.updateUserById(id, user);
+    public void updateUser(@PathVariable Long id, @RequestBody UserEntity updateUserDTO) {
+        service.updateUser(id, updateUserDTO);
     }
 
     @GetMapping("/user/email")
