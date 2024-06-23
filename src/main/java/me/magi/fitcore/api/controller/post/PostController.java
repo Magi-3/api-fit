@@ -52,7 +52,7 @@ public class PostController {
         service.removePost(id);
     }
 
-    @PatchMapping("/post/{id}")
+    @PostMapping("/post/update")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void UpdateRecipe(@RequestBody PostEntity post) {
 
