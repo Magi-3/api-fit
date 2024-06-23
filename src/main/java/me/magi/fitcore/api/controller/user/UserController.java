@@ -3,11 +3,9 @@ package me.magi.fitcore.api.controller.user;
 import me.magi.fitcore.model.entity.UserEntity;
 import me.magi.fitcore.model.services.UserServiceImpl;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -41,8 +39,8 @@ public class UserController {
 
     @PostMapping("/user/update")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void updateUser(@RequestBody UserEntity updateUserDTO) {
-        service.updateUser(updateUserDTO);
+    public UserEntity updateUser(@RequestBody UserEntity updateUserDTO) {
+        return service.updateUser(updateUserDTO);
     }
 
     @GetMapping("/user/email")
