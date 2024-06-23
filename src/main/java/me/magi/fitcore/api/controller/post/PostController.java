@@ -54,7 +54,7 @@ public class PostController {
 
     @PatchMapping("/post/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void UpdateRecipe(@PathVariable Long id, @RequestBody PostEntity post) {
+    public void UpdateRecipe(@RequestBody PostEntity post) {
 
     }
 
