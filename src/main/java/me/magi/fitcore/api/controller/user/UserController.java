@@ -39,7 +39,7 @@ public class UserController {
         service.removeUser(id);
     }
 
-    @PatchMapping("/user")
+    @PostMapping("/user/update")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void updateUser(@RequestBody UserEntity updateUserDTO) {
         service.updateUser(updateUserDTO);
